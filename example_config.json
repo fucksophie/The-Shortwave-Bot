@@ -1,0 +1,12 @@
+{
+	"pasteee": "paste.ee token",
+	"implementations": {
+		"discord": {
+			"botID": "discord bot ID",
+			"token": "discord token"
+		},
+		"telegram": {
+			"token": "telegram token"
+		}
+	}
+}
