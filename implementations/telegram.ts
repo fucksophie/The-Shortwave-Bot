@@ -1,6 +1,5 @@
 import { Bot } from "https://deno.land/x/telegram@v0.1.1/mod.ts";
 
-import * as core from "../classes/core.ts";
 import config from "../config.json" assert { type: "json" }; 
 import { Implementation } from "../classes/Implementation.ts";
 
@@ -14,11 +13,15 @@ export default class Telegram extends Implementation {
 			const args = message.message.text.split(" ");
 			const command = args.shift();
 
-			if(command == "/lookup") {
-				await message.reply(await core.lookup(args.join(" ")))
-			} else if(command == "/shortwave") {
-				await message.reply(await core.shortwaveInfo(args[0]))
-			}
+			this.commands.forEach(async comand => {
+				if(command == "/"+comand.name) {
+					try {
+						await message.reply(await comand.function(args.join(" ")));
+					} catch(e) {
+						console.log('Failed sending message.');
+					}
+				}
+			});
 		})
 
 		await telegram.launch({});

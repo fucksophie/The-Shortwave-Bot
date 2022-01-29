@@ -10,9 +10,9 @@ const commands = [
 		function: core.lookup
 	},
 	{
-		name: "shortwave",
+		name: "freq",
 		description: "Find what station is transmitting to a freq",
-		function: core.shortwaveInfo
+		function: core.freqLookup
 	}
 ];
 

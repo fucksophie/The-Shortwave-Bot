@@ -1,7 +1,6 @@
 import { createBot, startBot, DiscordenoMessage } from "https://deno.land/x/discordeno@13.0.0-rc18/mod.ts";
 import { enableCachePlugin, enableCacheSweepers } from "https://deno.land/x/discordeno_cache_plugin@0.0.21/mod.ts";
 
-import * as core from "../classes/core.ts";
 import config from "../config.json" assert { type: "json" }; 
 import { Implementation } from "../classes/Implementation.ts";
 
@@ -25,7 +24,7 @@ export default class Discord extends Implementation {
 						if(command == "??"+comand.name) {
 							try {
 								await bot.helpers.sendMessage(message.channelId, {
-									content: await core.lookup(args.join(" "))
+									content: await comand.function(args.join(" "))
 								});
 							} catch(e) {
 								console.log('Failed sending message.');
